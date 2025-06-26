@@ -14,80 +14,68 @@
     <h1>Stone-Paper-Scissor</h1>
     <button
       onclick="
-    console.log('You have chosen Stone.')
-    //This will generate random number between 0 and 3
-    let randomNumber = Math.random()*3;
-    let computerChoice;
-    if(randomNumber<=1){
-      computerChoice = 'Stone';
-    }else if(randomNumber<=2){
-      computerChoice = 'Paper';
-    }else{
-      computerChoice='Scissor';
-    }
-    console.log(`Computer choice is ${computerChoice}`);
-
-    let resultMsg;
-    if(computerChoice==='Stone'){
-      resultMsg = 'Its a tie';
-    }else if(computerChoice==='Paper'){
-      resultMsg = 'Computer wins';
-    }else{
-      resultMsg = 'You win!';
-    }
-    alert(`You have chosen Stone. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
+        console.log('You have chosen Stone.')
+        generateComputerChoice();
+        let resultMsg;
+        if(computerChoice==='Stone'){
+          resultMsg = 'Its a tie';
+        }else if(computerChoice==='Paper'){
+          resultMsg = 'Computer wins';
+        }else{
+          resultMsg = 'You win!';
+        }
+        alert(`You have chosen Stone. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
     "
     >
       Stone
     </button>
     <button
-      onclick="console.log('You have chosen Paper.')
-    randomNumber = Math.random()*3;
-    if(randomNumber<=1){
-      computerChoice = 'Stone';
-    }else if(randomNumber<=2){
-      computerChoice = 'Paper';
-    }else{
-      computerChoice='Scissor';
-    }
-    console.log(`Computer choice is ${computerChoice}`);
-
-    if(computerChoice==='Stone'){
-      resultMsg = 'You win!';
-    }else if(computerChoice==='Paper'){
-      resultMsg = 'Its a tie';
-    }else{
-      resultMsg = 'Computer wins';
-    }
-    alert(`You have chosen Paper. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
+      onclick="
+        console.log('You have chosen Paper.')
+        generateComputerChoice();
+        if(computerChoice==='Stone'){
+          resultMsg = 'You win!';
+        }else if(computerChoice==='Paper'){
+          resultMsg = 'Its a tie';
+        }else{
+          resultMsg = 'Computer wins';
+        }
+        alert(`You have chosen Paper. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
     "
     >
       Paper
     </button>
     <button
-      onclick="console.log('You have chosen Scissor.')
-    randomNumber = Math.random()*3;
-    if(randomNumber<=1){
-      computerChoice = 'Stone';
-    }else if(randomNumber<=2){
-      computerChoice = 'Paper';
-    }else{
-      computerChoice='Scissor';
-    }
-    console.log(`Computer choice is ${computerChoice}`);
-
-    if(computerChoice==='Stone'){
-      resultMsg = 'Computer win!';
-    }else if(computerChoice==='Paper'){
-      resultMsg = 'You win!';
-    }else{
-      resultMsg = 'Its a tie.';
-    }
-    alert(`You have chosen Scissor. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
+      onclick="
+        console.log('You have chosen Scissor.')
+        generateComputerChoice();
+        if(computerChoice==='Stone'){
+          resultMsg = 'Computer win!';
+        }else if(computerChoice==='Paper'){
+          resultMsg = 'You win!';
+        }else{
+          resultMsg = 'Its a tie.';
+        }
+        alert(`You have chosen Scissor. Computer choice is ${computerChoice} and the result is ${resultMsg}`)
     "
     >
       Scissor
     </button>
-    <script></script>
+    <script>
+      let randomNumber;
+      let computerChoice;
+      function generateComputerChoice() {
+        //This will generate random number between 0 and 3
+        randomNumber = Math.random() * 3;
+        if (randomNumber <= 1) {
+          computerChoice = "Stone";
+        } else if (randomNumber <= 2) {
+          computerChoice = "Paper";
+        } else {
+          computerChoice = "Scissor";
+        }
+        console.log(`Computer choice is ${computerChoice}`);
+      }
+    </script>
   </body>
 </html>
