@@ -15,7 +15,7 @@
     <button
       onclick="
         console.log('You have chosen Stone.')
-        generateComputerChoice();
+        let computerChoice = generateComputerChoice();
         let resultMsg;
         if(computerChoice==='Stone'){
           resultMsg = 'Its a tie';
@@ -32,7 +32,7 @@
     <button
       onclick="
         console.log('You have chosen Paper.')
-        generateComputerChoice();
+        computerChoice = generateComputerChoice();
         if(computerChoice==='Stone'){
           resultMsg = 'You win!';
         }else if(computerChoice==='Paper'){
@@ -48,7 +48,7 @@
     <button
       onclick="
         console.log('You have chosen Scissor.')
-        generateComputerChoice();
+        computerChoice = generateComputerChoice();
         if(computerChoice==='Stone'){
           resultMsg = 'Computer win!';
         }else if(computerChoice==='Paper'){
@@ -62,19 +62,17 @@
       Scissor
     </button>
     <script>
-      let randomNumber;
-      let computerChoice;
       function generateComputerChoice() {
         //This will generate random number between 0 and 3
-        randomNumber = Math.random() * 3;
+        let randomNumber = Math.random() * 3;
+        let computerChoice;
         if (randomNumber <= 1) {
-          computerChoice = "Stone";
+          return "Stone";
         } else if (randomNumber <= 2) {
-          computerChoice = "Paper";
+          return "Paper";
         } else {
-          computerChoice = "Scissor";
+          return "Scissor";
         }
-        console.log(`Computer choice is ${computerChoice}`);
       }
     </script>
   </body>
