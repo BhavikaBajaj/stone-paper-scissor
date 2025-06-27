@@ -47,6 +47,12 @@
     </button>
 
     <script>
+      let score = {
+        win: 0,
+        lost: 0,
+        tie: 0,
+      };
+
       function generateComputerChoice() {
         //This will generate random number between 0 and 3
         let randomNumber = Math.random() * 3;
@@ -63,31 +69,40 @@
       function getResult(userMove, computerMove) {
         let resultMsg;
         if (userMove === computerMove) {
+          score.tie++;
           return "Its a tie";
         } else if (userMove === "Stone") {
           if (computerMove == "Paper") {
+            score.lost++;
             return "Computer wins";
           } else {
+            score.win++;
             return "User wins";
           }
         } else if (userMove === "Paper") {
           if (computerMove === "Stone") {
+            score.win++;
             return "User wins";
           } else {
+            score.lost++;
             return "Computer wins";
           }
         } else {
           if (computerMove === "Stone") {
+            score.lost++;
             return "Computer wins";
           } else {
-            return "User Wins";
+            score.win++;
+            return "User wins";
           }
         }
       }
 
       function showResult(userMove, computerMove, resultMsg) {
         alert(
-          `You have chosen ${userMove}. Computer choice is ${computerMove} and the result is ${resultMsg}`
+          `You have chosen ${userMove}. Computer choice is ${computerMove}.
+          Result is ${resultMsg}
+          You have won ${score.win}, lost ${score.lost} and tie ${score.tie} so far.`
         );
       }
     </script>
