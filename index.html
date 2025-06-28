@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Project</title>
-    <style>
-      body {
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <h1>Stone-Paper-Scissor</h1>
     <button
+      class="choice-button"
       onclick="
         console.log('You have chosen Stone.')
         let computerChoice = generateComputerChoice();
@@ -21,9 +18,10 @@
         showResult(userChoice,computerChoice,resultMsg);
     "
     >
-      Stone
+      <img src="./images/Stone.png" alt="Stone Image" class="choice-image" />
     </button>
     <button
+      class="choice-button"
       onclick="
         console.log('You have chosen Paper.')
         computerChoice = generateComputerChoice();
@@ -32,9 +30,10 @@
         showResult(userChoice,computerChoice,resultMsg);
     "
     >
-      Paper
+      <img src="./images/Paper.png" alt="Paper Image" class="choice-image" />
     </button>
     <button
+      class="choice-button"
       onclick="
         console.log('You have chosen Scissor.')
         computerChoice = generateComputerChoice();
@@ -43,18 +42,41 @@
         showResult(userChoice,computerChoice,resultMsg);
     "
     >
-      Scissor
+      <img
+        src="./images/Scissor.png"
+        alt="Scissor Image"
+        class="choice-image"
+      />
     </button>
-
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+    <button
+      onclick="
+    localStorage.clear()
+    resetScore()"
+    >
+      Reset Score
+    </button>
     <script>
-      let score = {
-        win: 0,
-        lost: 0,
-        tie: 0,
-        displayScore: function () {
+      let scoreStr = localStorage.getItem("Score");
+      let score;
+      resetScore(scoreStr);
+
+      function resetScore(scoreStr) {
+        score = scoreStr
+          ? JSON.parse(scoreStr)
+          : {
+              win: 0,
+              lost: 0,
+              tie: 0,
+            };
+        score.displayScore = function () {
           return `Won ${score.win}, Lost ${score.lost} and Tie ${score.tie} `;
-        },
-      };
+        };
+        showResult();
+      }
 
       function generateComputerChoice() {
         //This will generate random number between 0 and 3
@@ -102,11 +124,21 @@
       }
 
       function showResult(userMove, computerMove, resultMsg) {
-        alert(
-          `You have chosen ${userMove}. Computer choice is ${computerMove}.
-          Result: ${resultMsg}
-          ${score.displayScore()}`
-        );
+        localStorage.setItem("Score", JSON.stringify(score));
+
+        document.querySelector("#user-move").innerText = userMove
+          ? `You have chosen ${userMove}`
+          : "";
+
+        document.querySelector("#computer-move").innerText = computerMove
+          ? `Computer choice is ${computerMove}`
+          : "";
+
+        document.querySelector("#result").innerText = resultMsg
+          ? resultMsg
+          : "";
+
+        document.querySelector("#score").innerText = score.displayScore();
       }
     </script>
   </body>
